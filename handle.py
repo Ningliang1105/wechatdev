@@ -16,7 +16,7 @@ class Handle(object):
     def __init__(self):
         self.app_root = os.path.dirname(__file__)
         self.templates_root = os.path.join(self.app_root, 'templates')
-        self.render = web.tempalte.render(self.templates_root)
+        self.render = web.template.render(self.templates_root)
 
 
     def GET(self):
