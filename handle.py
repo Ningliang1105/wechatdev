@@ -6,8 +6,19 @@ import reply
 import receive
 import web
 import imgtest
+import os
+import time
+import lxml
+import hashlib
 
 class Handle(object):
+
+    def __init__(self):
+        self.app_root = os.path.dirname(__file__)
+        self.templates_root = os.path.join(self.app_root, 'templates')
+        self.render - web.tempalte.render(self.tempaltes_root)
+
+
     def GET(self):
         try:
             data = web.input()
