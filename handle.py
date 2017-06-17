@@ -57,14 +57,11 @@ class Handle(object):
             elif recMsg.MsgType == 'image':
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
-                try:
-                    picurl = xml.find('PicUrl').text
-                    datas = imgtest(picurl)
-                    content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
-                    replyMsg = reply.TextMsg(toUser, fromUser, content)
-                    return replyMsg.send()
-                except:
-                    return 'fail'
+                picurl = recMsg.PicUrl
+                datas = imgtest(picurl)
+                content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
+                replyMsg = reply.TextMsg(toUser, fromUser, content)
+                return replyMsg.send()
             else:
                 print "暂且不处理"
                 return "success"
