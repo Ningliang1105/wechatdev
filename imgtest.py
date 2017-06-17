@@ -23,7 +23,7 @@ def imgtest(picurl):
 
     gender = re.search(r'"gender": "(.*?)"rn', i)
     age = re.search(r'"age": (.*?),rn', i)
-if gender.group(1) == 'Male':
+    if gender.group(1) == 'Male':
         gender1 = '男'
     else:
         gender1 = '女'
