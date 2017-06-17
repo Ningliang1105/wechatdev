@@ -54,7 +54,7 @@ class Handle(object):
                 content = "Your ID is", str(toUser)
                 replyMsg = reply.TextMsg(toUser, fromUser, content)
                 return replyMsg.send()
-            elif ecMsg.MsgType == 'image':
+            elif recMsg.MsgType == 'image':
                 try:
                     picurl = xml.find('PicUrl').text
                     datas = imgtest(picurl)
