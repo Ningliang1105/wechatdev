@@ -50,8 +50,6 @@ class Handle(object):
                     return self.render.reply_text(fromUser, toUser, int(time.time()), '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1])
                 except:
                     return self.render.reply_text(fromUser, toUser, int(time.time()),  '识别失败，换张图片试试吧')
-                else:
-                    return replyMsg.send()
             else:
                 print "暂且不处理"
                 return "success"
