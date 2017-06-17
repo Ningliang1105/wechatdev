@@ -55,6 +55,8 @@ class Handle(object):
                 replyMsg = reply.TextMsg(toUser, fromUser, content)
                 return replyMsg.send()
             elif recMsg.MsgType == 'image':
+                toUser = recMsg.FromUserName
+                fromUser = recMsg.ToUserName
                 try:
                     picurl = xml.find('PicUrl').text
                     datas = imgtest(picurl)
