@@ -60,9 +60,11 @@ class Handle(object):
                 try:
                     picurl = xml.find('PicUrl').text
                     datas = imgtest(picurl)
-                    return self.render.reply_text(fromUser, toUser, int(time.time()), '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1])
+                    content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
+                    replyMsg = reply.TextMsg(toUser, fromUser, content)
+                    return replyMsg.send()
                 except:
-                    return self.render.reply_text(fromUser, toUser, int(time.time()),  '识别失败，换张图片试试吧')
+                    return 'fail'
             else:
                 print "暂且不处理"
                 return "success"
