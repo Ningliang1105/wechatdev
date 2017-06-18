@@ -55,10 +55,9 @@ class Handle(object):
                     content = str(recMsg.Content)
                     if content[0:2] == u'天气':
                         replyMsg = reply.TextMsg(toUser, fromUser, 'weather')
-                        return replyMsg.send()
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
-                        return replyMsg.send()
+                    return replyMsg.send()
                 elif recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
                     replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
