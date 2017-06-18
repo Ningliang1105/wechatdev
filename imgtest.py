@@ -21,6 +21,7 @@ def imgtest(picurl):
     h = r.content
     i = h.replace('\\','')
     #j = eval(i)
+    print i
 
     gender = re.search(r'"gender": "(.*?)"rn', i)
     age = re.search(r'"age": (.*?),rn', i)
