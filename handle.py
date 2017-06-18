@@ -49,13 +49,15 @@ class Handle(object):
             #print "Handle Post webdata is ", webData   #后台打日志
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg):
-
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 if recMsg.MsgType == 'text':
-                    content = "Your ID is", str(toUser)
-                    replyMsg = reply.TextMsg(toUser, fromUser, content)
-                    return replyMsg.send()
+                    if recMsg.content[:2] == u'天气':
+                        replyMsg = reply.TextMsg(toUser, fromUser, 'weather')
+                        return replyMsg.send()
+                    else:
+                        replyMsg = reply.TextMsg(toUser, fromUser, 'test')
+                        return replyMsg.send()
                 elif recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
                     replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
