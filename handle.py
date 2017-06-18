@@ -62,10 +62,10 @@ class Handle(object):
                         query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'json'}
                         resp = requests.get(url, params=query)
                         weather = str(resp.json()['result']['today']['weather'])
-                        print weather
+                        response = weather.encode('utf-8')
                         #dressing = resp.json()['result']['today']['dressing_advice']
                         #message = weather + dressing
-                        replyMsg = reply.TextMsg(toUser, fromUser, weather)
+                        replyMsg = reply.TextMsg(toUser, fromUser, response)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
