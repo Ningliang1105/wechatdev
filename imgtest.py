@@ -12,7 +12,7 @@ def imgtest(picurl):
     'Referer': "http://how-old.net/",
     'X-Requested-With': "XMLHttpRequest"
         }
-
+    print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
     data = {'file':s.get(picurl).content}
     #data = {'file': open(sid+'.jpg', 'rb')}
     #此处打开指定的jpg文件
