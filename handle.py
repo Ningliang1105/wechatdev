@@ -63,8 +63,9 @@ class Handle(object):
                         apiData = requests.get(url, params=query).text
                         print apiData
                         weatherData = ET.fromstring(apiData)
-                        print weatherData['result']['today']
-                        replyMsg = reply.TextMsg(toUser, fromUser, weatherData)
+                        today = weatherData['result']['today']
+                        print today
+                        replyMsg = reply.TextMsg(toUser, fromUser, today)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
