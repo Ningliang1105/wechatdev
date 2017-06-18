@@ -62,9 +62,9 @@ class Handle(object):
                         query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849'}
                         apiData = requests.get(url, params=query).json()['result']['today']
                         print apiData
-                        weatherData = ET.fromstring(apiData)
-                        temp = weatherData[]
-                        replyMsg = reply.TextMsg(toUser, fromUser, weatherData)
+                        #weatherData = ET.fromstring(apiData)
+                        
+                        replyMsg = reply.TextMsg(toUser, fromUser, apiData)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
