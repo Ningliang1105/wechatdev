@@ -59,8 +59,8 @@ class Handle(object):
                         cityname = content[2:4]
                         print cityname
                         url = 'http://v.juhe.cn/weather/index'
-                        query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'json'}
-                        apiData = requests.get(url, params=query).json()['result']['today'].text
+                        query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'xml'}
+                        apiData = requests.get(url, params=query).text
                         print apiData
                         #weatherData = ET.fromstring(apiData)
                         #print weatherData[]
