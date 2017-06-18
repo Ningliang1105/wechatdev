@@ -60,13 +60,11 @@ class Handle(object):
                         print cityname
                         url = 'http://v.juhe.cn/weather/index'
                         query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'json'}
-                        apiData = requests.get(url, params=query).json()['result']['today']
-                        print apiData
-                        print apiData.encoding
-                        #weatherData = ET.fromstring(apiData)
-                        #today = weatherData['result']['today']
-                        #print today
-                        replyMsg = reply.TextMsg(toUser, fromUser, apiData)
+                        resp = requests.get(url, params=query)
+                        weather = resp.json()['result']['today']['weather']
+                        dressing = resp.json()['result']['today']['dressing_advice']
+                        message = weather + dressing
+                        replyMsg = reply.TextMsg(toUser, fromUser, message)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
