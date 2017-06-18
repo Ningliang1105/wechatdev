@@ -59,6 +59,7 @@ class Handle(object):
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 picurl = recMsg.PicUrl
+                print picurl
                 KEY = '5c9cac02ac524915961d0ee56d0182e5'  # Replace with a valid Subscription Key here.
                 CF.Key.set(KEY)
 
