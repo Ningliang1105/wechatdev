@@ -3,6 +3,7 @@ import requests
 import re
 
 def imgtest(picurl):
+    print "Hello world"
     s = requests.session()
     url = 'http://how-old.net/Home/Analyze?isTest=False&source=&version=001'
     header = {
