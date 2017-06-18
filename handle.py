@@ -46,7 +46,7 @@ class Handle(object):
     def POST(self):
         try:
             webData = web.data()
-            print "Handle Post webdata is ", webData   #后台打日志
+            #print "Handle Post webdata is ", webData   #后台打日志
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
                 toUser = recMsg.FromUserName
@@ -58,6 +58,7 @@ class Handle(object):
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 picurl = recMsg.PicUrl
+                print "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
                 datas = imgtest(picurl)
                 content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
                 replyMsg = reply.TextMsg(toUser, fromUser, content)

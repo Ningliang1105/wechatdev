@@ -17,6 +17,9 @@ def imgtest(picurl):
     #data = {'file': open(sid+'.jpg', 'rb')}
     #此处打开指定的jpg文件
 
+    print "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH2"
+
+
     r = s.post(url, files=data, headers=header)
     h = r.content
     i = h.replace('\\','')
