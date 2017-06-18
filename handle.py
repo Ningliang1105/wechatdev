@@ -61,7 +61,9 @@ class Handle(object):
                         url = 'http://v.juhe.cn/weather/index'
                         query = {'format': '1', 'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849'}
                         apiData = requests.get(url, params=query)
+                        print apiData
                         weatherData = ET.fromstring(apiData)
+                        print weatherData
                         temp = weatherData.find('temp').text
                         print temp
                         replyMsg = reply.TextMsg(toUser, fromUser, temp)
