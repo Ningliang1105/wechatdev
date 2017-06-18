@@ -48,26 +48,20 @@ class Handle(object):
             webData = web.data()
             #print "Handle Post webdata is ", webData   #后台打日志
             recMsg = receive.parse_xml(webData)
-            if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
-                toUser = recMsg.FromUserName
-                fromUser = recMsg.ToUserName
-                content = "Your ID is", str(toUser)
-                replyMsg = reply.TextMsg(toUser, fromUser, content)
-                return replyMsg.send()
-            elif recMsg.MsgType == 'image':
-                toUser = recMsg.FromUserName
-                fromUser = recMsg.ToUserName
-                picurl = recMsg.PicUrl
-                print picurl
-                KEY = '5c9cac02ac524915961d0ee56d0182e5'  # Replace with a valid Subscription Key here.
-                CF.Key.set(KEY)
-                BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # Replace with your regional Base URL
-                CF.BaseUrl.set(BASE_URL)
+            if isinstance(recMsg, receive.Msg):
 
-                img_url = 'https://raw.githubusercontent.com/Microsoft/Cognitive-Face-Windows/master/Data/detection1.jpg'
-                result = CF.face.detect(picurl)
-                print result
-                return 'success'
+                toUser = recMsg.FromUserName
+                fromUser = recMsg.ToUserName
+                if recMsg.MsgType == 'text':
+                    content = "Your ID is", str(toUser)
+                    replyMsg = reply.TextMsg(toUser, fromUser, content)
+                    return replyMsg.send()
+                elif recMsg.MsgType == 'image':
+                    mediaId = recMsg.MediaId
+                    replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
+                    return replyMsg.send()
+                else:
+                    return reply.Msg().send()
                 #content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
                 #replyMsg = reply.TextMsg(toUser, fromUser, content)
                 #return replyMsg.send()
