@@ -67,6 +67,7 @@ class Handle(object):
                 img_url = 'https://raw.githubusercontent.com/Microsoft/Cognitive-Face-Windows/master/Data/detection1.jpg'
                 result = CF.face.detect(picurl)
                 print result
+                return 'success'
                 #content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
                 #replyMsg = reply.TextMsg(toUser, fromUser, content)
                 #return replyMsg.send()
