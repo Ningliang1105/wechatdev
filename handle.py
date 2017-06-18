@@ -9,6 +9,8 @@ import os
 import time
 import lxml
 import cognitive_face as CF
+import requests
+import xml.etree.ElementTree as ET
 
 
 class Handle(object):
@@ -54,7 +56,10 @@ class Handle(object):
                 if recMsg.MsgType == 'text':
                     content = recMsg.Content
                     if content[0:2] == u'天气':
-                        replyMsg = reply.TextMsg(toUser, fromUser, 'weather')
+                        r = requests.get('http://api.map.baidu.com/telematics/v3/weather?location=北京&output=json&ak=f75b6fr8g5het9Y316O9epC8T00GrmR3')
+                        weatherData = r.ET.fromstring()
+                        print weatherData
+                        replyMsg = reply.TextMsg(toUser, fromUser, 'message')
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
