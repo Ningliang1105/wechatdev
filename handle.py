@@ -9,44 +9,8 @@ import os
 import time
 import lxml
 import hashlib
-import requests
-import re
+import cognitive_face as CF
 
-def imgtest(picurl):
-    print "Hello world"
-    s = requests.session()
-    url = 'http://how-old.net/Home/Analyze?isTest=False&source=&version=001'
-    header = {
-    'Accept-Encoding':'gzip, deflate',
-    'User-Agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:34.0) Gecko/20100101 Firefox/34.0",
-    'Host': "how-old.net",
-    'Referer': "http://how-old.net/",
-    'X-Requested-With': "XMLHttpRequest"
-        }
-    print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-    data = {'file':s.get(picurl).content}
-    #data = {'file': open(sid+'.jpg', 'rb')}
-    #此处打开指定的jpg文件
-
-    print "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH2"
-
-
-    r = s.post(url, files=data, headers=header)
-    h = r.content
-    i = h.replace('\\','')
-    #j = eval(i)
-    print i
-
-    gender = re.search(r'"gender": "(.*?)"rn', i)
-    age = re.search(r'"age": (.*?),rn', i)
-    if gender.group(1) == 'Male':
-        gender1 = '男'
-    else:
-        gender1 = '女'
-    #print gender1
-    #print age.group(1)
-    datas = [gender1, age.group(1)]
-    return datas
 
 class Handle(object):
 
@@ -95,11 +59,18 @@ class Handle(object):
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 picurl = recMsg.PicUrl
-                print "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
-                datas = imgtest(picurl)
-                content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
-                replyMsg = reply.TextMsg(toUser, fromUser, content)
-                return replyMsg.send()
+                KEY = '5c9cac02ac524915961d0ee56d0182e5'  # Replace with a valid Subscription Key here.
+                CF.Key.set(KEY)
+
+                BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0'  # Replace with your regional Base URL
+                CF.BaseUrl.set(BASE_URL)
+
+                #img_url = 'https://raw.githubusercontent.com/Microsoft/Cognitive-Face-Windows/master/Data/detection1.jpg'
+                result = CF.face.detect(picurl)
+                print result
+                #content = '图中人物性别为'+datas[0]+'\n'+'年龄为'+datas[1]
+                #replyMsg = reply.TextMsg(toUser, fromUser, content)
+                #return replyMsg.send()
             else:
                 print "暂且不处理"
                 return "success"
