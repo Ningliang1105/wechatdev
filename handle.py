@@ -65,7 +65,7 @@ class Handle(object):
                         print weather
                         #dressing = resp.json()['result']['today']['dressing_advice']
                         #message = weather + dressing
-                        replyMsg = reply.TextMsg(toUser, fromUser, weather)
+                        replyMsg = reply.TextMsg(toUser, fromUser, str(weather))
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
