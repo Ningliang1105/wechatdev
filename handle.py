@@ -63,7 +63,7 @@ class Handle(object):
                         apiData = requests.get(url, params=query)
                         weatherData = ET.fromstring(apiData)
                         temp = weatherData.find('temp').text
-
+                        print temp
                         replyMsg = reply.TextMsg(toUser, fromUser, temp)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
