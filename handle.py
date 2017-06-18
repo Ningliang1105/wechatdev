@@ -60,7 +60,7 @@ class Handle(object):
                         print cityname
                         url = 'http://v.juhe.cn/weather/index'
                         query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'json'}
-                        apiData = requests.get(url, params=query).json()['result']['today']
+                        apiData = requests.get(url, params=query).json()['result']['today'].encode(resp.encoding).decode('utf-8')
                         print apiData
                         #weatherData = ET.fromstring(apiData)
                         #today = weatherData['result']['today']
