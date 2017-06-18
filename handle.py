@@ -57,7 +57,8 @@ class Handle(object):
                     content = recMsg.Content
                     if content[0:2] == u'天气':
                         cityname = content[2:4].decode('utf-8')
-                        url = 'ttp://v.juhe.cn/weather/index'
+                        print cityname
+                        url = 'http://v.juhe.cn/weather/index'
                         query = {'format': '1', 'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849'}
                         r = requests.get(url, params=query)
                         print r
