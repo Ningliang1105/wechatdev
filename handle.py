@@ -56,10 +56,13 @@ class Handle(object):
                 if recMsg.MsgType == 'text':
                     content = recMsg.Content
                     if content[0:2] == u'天气':
-                        r = requests.get('http://api.map.baidu.com/telematics/v3/weather?location=北京&output=xml&ak=f75b6fr8g5het9Y316O9epC8T00GrmR3')
+                        cityname = content[2:4].decode('utf-8')
+                        url = 'ttp://v.juhe.cn/weather/index'
+                        query = {'format': '1', 'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849'}
+                        r = requests.get(url, params=query)
                         print r
                         message = ET.fromstring(r)
-                        
+
                         replyMsg = reply.TextMsg(toUser, fromUser, 'message')
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
