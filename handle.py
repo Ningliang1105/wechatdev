@@ -53,7 +53,7 @@ class Handle(object):
                 fromUser = recMsg.ToUserName
                 if recMsg.MsgType == 'text':
                     print recMsg.Content, type(recMsg.Content)
-                    if recMsg.Content[:2] == u'天气':
+                    if recMsg.Content[:2] == '天气':
                         replyMsg = reply.TextMsg(toUser, fromUser, 'weather')
                         return replyMsg.send()
                     else:
