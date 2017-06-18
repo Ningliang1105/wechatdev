@@ -59,11 +59,11 @@ class Handle(object):
                         cityname = content[2:4]
                         print cityname
                         url = 'http://v.juhe.cn/weather/index'
-                        query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849'}
-                        apiData = requests.get(url, params=query).json()['result']['today'].encode('utf-8')
+                        query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'json'}
+                        apiData = requests.get(url, params=query).json()['result']['today'].decode('utf-8')
                         print apiData
                         #weatherData = ET.fromstring(apiData)
-                        
+                        #print weatherData[]
                         replyMsg = reply.TextMsg(toUser, fromUser, apiData)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
