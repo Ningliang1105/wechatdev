@@ -61,7 +61,7 @@ class Handle(object):
                         url = 'http://v.juhe.cn/weather/index'
                         query = {'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849', 'dtype':'json'}
                         resp = requests.get(url, params=query)
-                        weather = str(resp.json()['result']['today']['weather'])
+                        weather = resp.json()['result']['today']['weather']
                         response = weather.encode('utf-8')
                         #dressing = resp.json()['result']['today']['dressing_advice']
                         #message = weather + dressing
