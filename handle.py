@@ -60,11 +60,11 @@ class Handle(object):
                         print cityname
                         url = 'http://v.juhe.cn/weather/index'
                         query = {'format': '1', 'cityname': cityname, 'key': '59c4d4057feed1a7ac32e7055ae7d849'}
-                        r = requests.get(url, params=query)
-                        print r
-                        #message = ET.fromstring(r)
+                        apiData = requests.get(url, params=query)
+                        weatherData = ET.fromstring(apiData)
+                        temp = weatherData.find('temp').text
 
-                        replyMsg = reply.TextMsg(toUser, fromUser, 'message')
+                        replyMsg = reply.TextMsg(toUser, fromUser, temp)
                     else:
                         replyMsg = reply.TextMsg(toUser, fromUser, 'test')
                     return replyMsg.send()
